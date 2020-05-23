@@ -1,0 +1,74 @@
+version: '3'
+services:
+
+  consul:
+    image: consul
+    
+  apigateway:
+    build: ./api-gateway
+    ports:
+    - "8080:8080"
+    depends_on:
+      - "consul"
+      
+  ricette:
+     build: ./ricette
+     depends_on:
+       - "consul"
+     depends_on:
+       - "postgres"
+      
+  connessioni:
+     build: ./connessioni
+     depends_on:
+      - "consul"
+     depends_on:
+       - "postgres2"
+        
+  ricette-seguite:
+    build: ./ricette-seguite
+    depends_on:
+      - "consul"
+      
+  postgres:
+    container_name: postgresServer1
+    image: postgres
+    volumes:
+      - "$PWD/postgres:/docker-entrypoint-initdb.d"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ricette
+      
+  postgres2:
+    extends: postgres
+    container_name: postgresServer2
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: connessioni
+      
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+      
+  kafka:
+    image: wurstmeister/kafka:latest
+    depends_on:
+      - "zookeeper"
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 10.11.1.121
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_CREATE_TOPICS: "creazioneRicetta:1:1"
+      KAFKA_CREATE_TOPICS: "creazioneConnessione:1:1"
+      
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
