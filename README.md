@@ -10,6 +10,9 @@ Per aggiornare la repository, posizionarsi nella repo locale ed eseguire:
 ```
 git pull 
 ```
+
+### Note per gli sviluppatori
+
 Per connettere ad eclipse il progetto, una volta clonato, importare il progetto come gradle project in Eclipse e seguire le seguenti istruzioni:
 
 "Go to git repositories view in eclipse ( or Team -> Show in repositories View)
@@ -25,4 +28,5 @@ For configuring Fetch, go to Git Repositories -> Remote -> Configure Fetch -> Ad
 For configuring Master Branch, Branch -> Local -> Master Branch -> Right click and configure branch -> Remote: origin and Upstream Branch : refs/heads/master -> click ok " 
 
 (fonte: https://stackoverflow.com/questions/17552457/how-do-i-upload-eclipse-projects-to-github)
+
 
