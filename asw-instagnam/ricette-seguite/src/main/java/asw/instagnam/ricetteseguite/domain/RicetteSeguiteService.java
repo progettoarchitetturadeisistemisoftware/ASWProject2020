@@ -3,27 +3,26 @@ package asw.instagnam.ricetteseguite.domain;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.*; 
+import java.util.*;
+import java.util.stream.Collectors; 
 
 @Service 
 public class RicetteSeguiteService {
 
 	@Autowired 
-	private ConnessioniService connessioniService;
+	private ConnessioniRepository connessioniRepository;
 
 	@Autowired 
-	private RicetteService ricetteService;
+	private RicetteRepository ricetteRepository;
 
-	/* Trova le ricette (in formato breve) degli utenti seguiti da utente. */ 
+	/* Trova le ricette (in formato breve) degli utenti seguiti da utente. */
 	public Collection<Ricetta> getRicetteSeguite(String utente) {
-		Collection<Ricetta> ricette = new ArrayList<>(); 
-		Collection<Connessione> connessioni = connessioniService.getConnessioniByFollower(utente); 
-		for (Connessione connessione : connessioni) {
-			String followed = connessione.getFollowed();
-			Collection<Ricetta> ricetteByFollowed = ricetteService.getRicetteByAutore(followed);
-			ricette.addAll(ricetteByFollowed);
-		}
-		return ricette; 
+		//Trova le connessioni in cui utente è follower
+		return connessioniRepository.findAllByFollower(utente).stream()
+				//Trova le ricette create da ogni utente followed
+				.map(connessione -> ricetteRepository.findAllByAutore(connessione.getFollowed()))
+				.flatMap(Collection::stream).collect(Collectors.toList());
+
 	}
 	
 }

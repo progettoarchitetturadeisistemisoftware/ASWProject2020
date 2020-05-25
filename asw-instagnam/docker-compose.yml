@@ -29,6 +29,8 @@ services:
     build: ./ricette-seguite
     depends_on:
       - "consul"
+    depends_on:
+       - "postgres3"
       
   postgres:
     container_name: postgresServer1
@@ -51,6 +53,16 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: connessioni
+   
+  postgres3:
+    extends: postgres2
+    container_name: postgresServer3
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ricette-seguite
       
   zookeeper:
     image: wurstmeister/zookeeper
@@ -66,8 +78,8 @@ services:
     environment:
       KAFKA_ADVERTISED_HOST_NAME: 10.11.1.121
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_CREATE_TOPICS: "creazioneRicetta:1:1"
-      KAFKA_CREATE_TOPICS: "creazioneConnessione:1:1"
+      KAFKA_CREATE_TOPICS: "ricette-service-event-channel:1:1"
+      KAFKA_CREATE_TOPICS: "connessioni-service-event-channel:1:1"
       
 
     volumes:

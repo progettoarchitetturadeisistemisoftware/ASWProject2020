@@ -26,5 +26,17 @@ subprojects {
 			url 'https://repo.spring.io/libs-milestone'
 		}
 	}
-
+	/*	sourceSets {
+          main {
+              java {
+                  srcDir 'src/java/test'
+              }
+          }	
+    }
+    */
 }
+	
+
+	
+	
+
