@@ -10,12 +10,11 @@ import asw.instagnam.ricetteseguite.domain.consumer.RicetteDomainEventConsumer;
 import asw.instagnam.ricetteservice.api.event.RicetteServiceEventChannel;
 
 @Component
-public class RicetteDomainEventListener implements DomainEventListener {
+public class RicetteDomainEventListener{
 
-	 @Autowired
-	 private RicetteDomainEventConsumer ricetteDomainEventConsumer;
-	
-	@Override
+	@Autowired
+	private RicetteDomainEventConsumer ricetteDomainEventConsumer;
+
 	@KafkaListener(topics = RicetteServiceEventChannel.channel)
 	public void listen(ConsumerRecord<String, DomainEvent> record) {
 		DomainEvent event = record.value();

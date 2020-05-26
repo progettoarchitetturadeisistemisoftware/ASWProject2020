@@ -45,8 +45,10 @@ services:
       POSTGRES_DB: ricette
       
   postgres2:
-    extends: postgres
     container_name: postgresServer2
+    image: postgres
+    volumes:
+      - "$PWD/postgres:/docker-entrypoint-initdb.d"
     ports:
       - "5433:5432"
     environment:
@@ -55,8 +57,8 @@ services:
       POSTGRES_DB: connessioni
    
   postgres3:
-    extends: postgres2
     container_name: postgresServer3
+    image: postgres
     ports:
       - "5434:5432"
     environment:
@@ -78,8 +80,7 @@ services:
     environment:
       KAFKA_ADVERTISED_HOST_NAME: 10.11.1.121
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_CREATE_TOPICS: "ricette-service-event-channel:1:1"
-      KAFKA_CREATE_TOPICS: "connessioni-service-event-channel:1:1"
+      KAFKA_CREATE_TOPICS: "ricette-service-event-channel:1:1,connessioni-service-event-channel:1:1"
       
 
     volumes:

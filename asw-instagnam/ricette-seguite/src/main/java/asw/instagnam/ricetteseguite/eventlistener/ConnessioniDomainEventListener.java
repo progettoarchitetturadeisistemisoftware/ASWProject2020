@@ -11,12 +11,11 @@ import asw.instagnam.ricetteseguite.domain.consumer.ConnessioniDomainEventConsum
 
 
 @Component
-public class ConnessioniDomainEventListener implements DomainEventListener {
+public class ConnessioniDomainEventListener{
 
 	@Autowired
-	 private ConnessioniDomainEventConsumer connessioniDomainEventConsumer;
-	
-	@Override
+	private ConnessioniDomainEventConsumer connessioniDomainEventConsumer;
+
 	@KafkaListener(topics = ConnessioniServiceEventChannel.channel)
 	public void listen(ConsumerRecord<String, DomainEvent> record) {
 		DomainEvent event = record.value();

@@ -9,11 +9,11 @@ spring:
         group-id: ${spring.application.name}
         auto-offset-reset: earliest
         key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-        value-deserializer: org.apache.kafka.common.serialization.JsonDeserializer
+        value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
      producer:
         bootstrap-servers: ${DOCKER_HOST_IP:10.11.1.121}:9092
         key-serializer: org.apache.kafka.common.serialization.StringSerializer
-        value-serializer: org.apache.kafka.common.serialization.JsonSerializer
+        value-serializer: org.apache.kafka.common.serialization.StringSerializer
   cloud:
     consul:
       host: consul
@@ -37,7 +37,7 @@ spring:
       use-new-id-generator-mappings: true
   datasource:
     platform: postgres
-    url: jdbc:postgresql://postgres:5432/ricette-seguite
+    url: jdbc:postgresql://postgres3:5432/ricette-seguite
     username: postgres
     password: postgres
     driverClassName: org.postgresql.Driver

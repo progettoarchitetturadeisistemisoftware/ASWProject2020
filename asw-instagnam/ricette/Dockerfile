@@ -1,5 +1,5 @@
 ######################################################
-# Dockerfile per l'applicazione sentence / api-gateway 
+# Dockerfile per l'applicazione ricette
 ######################################################
 
 FROM openjdk:8-jdk 

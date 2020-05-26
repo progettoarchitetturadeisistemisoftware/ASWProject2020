@@ -5,11 +5,11 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import asw.instagnam.common.api.event.DomainEvent;
-import asw.instagnam.connessioni.domain.DomainEventPublisher;
+import asw.instagnam.connessioni.domain.ConnessioniDomainEventPublisher;
 import asw.instagnam.connessioniservice.api.event.ConnessioniServiceEventChannel;
 
 @Component
-public class ConnessioniDomainEventPublisherImpl implements DomainEventPublisher {
+public class ConnessioniDomainEventPublisherImpl implements ConnessioniDomainEventPublisher {
 
 
 	@Autowired
