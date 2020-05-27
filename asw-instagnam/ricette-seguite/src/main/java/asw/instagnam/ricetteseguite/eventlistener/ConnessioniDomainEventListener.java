@@ -11,7 +11,7 @@ import asw.instagnam.ricetteseguite.domain.consumer.ConnessioniDomainEventConsum
 
 
 @Component
-public class ConnessioniDomainEventListener{
+public class ConnessioniDomainEventListener implements DomainEventListener{
 
 	@Autowired
 	private ConnessioniDomainEventConsumer connessioniDomainEventConsumer;

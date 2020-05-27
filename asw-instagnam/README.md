@@ -37,25 +37,20 @@ L'applicazione *Instagnam* è composta dai seguenti microservizi:
   * espone il servizio *connessioni* sul path `/connessioni` - ad esempio, `GET /connessioni/connessioni`
   * espone il servizio *ricette-seguite* sul path `/ricette-seguite` - ad esempio, `GET /ricette-seguite/ricetteseguite/{utente}`
 
-In questo progetto, l'implementazione dell'operazione `GET /ricetteseguite/U` del servizio *ricette-seguite*, 
-per trovare le ricette seguite dall'utente U, è basata su invocazioni remote REST ai servizi *connessioni* e *ricette*: 
-* prima viene invocata `GET /connessioni?follower=U` di *connessioni* 
-  per trovare l'insieme AA di tutti gli utenti seguiti dall'utente U 
-* poi, ripetutamente, per ciascun utente A nell'insieme AA, viene invocata `GET /ricette?autore=A` di *ricette*, 
-  in modo da trovare, complessivamente, le ricette degli autori nell'insieme degli utenti AA seguiti da U 
 
 
 ## Esecuzione 
 
 Per eseguire questo progetto: 
+* far partire Docker sulla propria macchina
 
-* avviare *Consul* eseguendo lo script `start-consul.sh` 
+* avviare la costruzione delle immagini eseguendo lo script `build-docker-images-with-compose.sh` 
 
-* per avviare l'applicazione *Instagnam*, eseguire lo script `run-instagnam.sh` 
+* per avviare l'applicazione *Instagnam*, eseguire lo script `start-infrastructure.sh` 
+  oppure con il comando docker-compose.up
 
-Alla fine, l'applicazione può essere arrestata usando lo script `stop-java-processes.sh` (**da usare con cautela!**). 
+Alla fine, l'applicazione può essere arrestata usando lo script `stop-infrastructure.sh` 
 
-Inoltre, *Consul* può essere arrestato con lo script `stop-consul.sh`. 
 
 
 ## Descrizione delle attività da svolgere 

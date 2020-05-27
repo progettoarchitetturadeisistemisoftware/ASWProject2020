@@ -10,7 +10,7 @@ import asw.instagnam.ricetteseguite.domain.consumer.RicetteDomainEventConsumer;
 import asw.instagnam.ricetteservice.api.event.RicetteServiceEventChannel;
 
 @Component
-public class RicetteDomainEventListener{
+public class RicetteDomainEventListener implements DomainEventListener{
 
 	@Autowired
 	private RicetteDomainEventConsumer ricetteDomainEventConsumer;
