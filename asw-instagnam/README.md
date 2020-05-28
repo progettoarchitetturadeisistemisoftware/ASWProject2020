@@ -42,6 +42,8 @@ L'applicazione *Instagnam* è composta dai seguenti microservizi:
 ## Esecuzione 
 
 Per eseguire questo progetto: 
+* Eseguire la build con il comando `gradle build`
+
 * far partire Docker sulla propria macchina
 
 * avviare la costruzione delle immagini eseguendo lo script `build-docker-images-with-compose.sh` 
