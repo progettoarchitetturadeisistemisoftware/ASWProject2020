@@ -10,7 +10,7 @@ spring:
       discovery: 
         instanceId: ${spring.application.name}-${spring.cloud.client.hostname}-${random.value}
         healthCheckPath: /actuator/health
-        healthCheckInterval: 10s
+        healthCheckInterval: 30s
         # configurazione per effettuare esprimenti, NON USARE UN PRODUZIONE 
         # dopo quanto tempo consul deve smettere di restituire servizi che non rispondono all'health check? 
         healthCheckCriticalTimeout: 60s

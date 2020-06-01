@@ -1,8 +1,10 @@
 package asw.instagnam.connessioni.domain;
 
-import javax.persistence.*; 
+import javax.persistence.*;
 
-import lombok.*; 
+import lombok.*;
+
+
 
 @Entity 
 @Data @NoArgsConstructor
