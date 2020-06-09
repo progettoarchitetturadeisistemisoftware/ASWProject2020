@@ -1,0 +1,3 @@
+echo Starting infrastructure...
+
+docker-compose -f docker-compose-with-scaling.yml up
