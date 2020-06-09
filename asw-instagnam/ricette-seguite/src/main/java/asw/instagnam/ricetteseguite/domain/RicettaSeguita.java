@@ -28,5 +28,7 @@ public class RicettaSeguita {
 		this.titoloRicetta = titoloRicetta;
 	} 
 	
-	
+	public RicettaSeguita(String utenteFollower, Ricetta ricetta) {
+		this(utenteFollower, ricetta.getId(), ricetta.getAutore(), ricetta.getTitolo()); 
+	} 
 }
