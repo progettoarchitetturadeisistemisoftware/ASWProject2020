@@ -1,3 +1,2 @@
 echo Starting infrastructure...
-
-docker-compose -f docker-compose-with-scaling.yml up
+docker-compose up --scale ricette=2 --scale connessioni=2 --scale ricette-seguite=2

@@ -15,8 +15,8 @@ public class RicetteSeguiteService {
 	@Autowired 
 	private RicetteSeguiteRepository ricetteSeguiteRepository;
 
-	/*Variante più complessa
-		Trova le ricette create da utenti seguiti da: utente*/
+	/*Variante piu' complessa
+    //Trova le ricette create da utenti seguiti da: utente*/
 	public Collection<Ricetta> getRicetteSeguite(String utente) {
 		return ricetteSeguiteRepository.findAllByFollower(utente).stream()
 				.map(ricettaSeguita -> new Ricetta(ricettaSeguita.getIdRicetta(), ricettaSeguita.getAutoreRicetta(),

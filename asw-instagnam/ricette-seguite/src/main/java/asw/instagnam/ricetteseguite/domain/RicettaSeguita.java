@@ -12,10 +12,9 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor @AllArgsConstructor
 public class RicettaSeguita {
 	
-	
+	private String follower; 
 	@Id
 	private Long idRicetta; 
-	private String follower; 
 	private String autoreRicetta; 
 	private String titoloRicetta;
 	

@@ -15,30 +15,27 @@ import asw.instagnam.ricetteseguite.domain.repository.ConnessioniRepository;
 import asw.instagnam.ricetteseguite.domain.repository.RicetteRepository;
 import asw.instagnam.ricetteseguite.domain.repository.RicetteSeguiteRepository;
 
-
 @Service
 public class ConnessioniDomainEventConsumer implements DomainEventConsumer {
-	
+
 	@Autowired
-	private ConnessioniRepository connessioniRepository; 
-	
+	private ConnessioniRepository connessioniRepository;
+
 	@Autowired
-	private RicetteRepository ricetteRepository; 
+	private RicetteRepository ricetteRepository;
 
 	@Autowired
 	private RicetteSeguiteRepository ricetteSeguiteRepository;
 
 	@Override
 	public void onEvent(DomainEvent event) {
-		if(event instanceof ConnessioneCreatedEvent) {
+		if (event instanceof ConnessioneCreatedEvent) {
 			this.handleConnessioneCreatedEvent(event);
-		}
-		else {
-			System.out.println("UNKNOWN EVENT\n"); 
+		} else {
+			System.out.println("UNKNOWN EVENT\n");
 		}
 	}
 
-	
 	private void handleConnessioneCreatedEvent(DomainEvent event) {
 		ConnessioneCreatedEvent cce = (ConnessioneCreatedEvent) event;
 		// Creiamo una nuova connessione
@@ -48,8 +45,8 @@ public class ConnessioniDomainEventConsumer implements DomainEventConsumer {
 		Collection<Ricetta> ricette = ricetteRepository.findAllByAutore(autore);
 		// Creiamo le ricette seguite
 		List<RicettaSeguita> ricetteSeguite = new ArrayList<>();
-		ricette.stream().forEach(ricetta -> ricetteSeguite.add(new RicettaSeguita(ricetta.getId(),
-				connessione.getFollower(), ricetta.getAutore(), ricetta.getTitolo())));
+		ricette.stream().forEach(ricetta -> ricetteSeguite.add(new RicettaSeguita(connessione.getFollower(),
+				ricetta.getId(), ricetta.getAutore(), ricetta.getTitolo())));
 
 		// Salviamo le ennuple nella base di dati
 		connessioniRepository.save(connessione);
