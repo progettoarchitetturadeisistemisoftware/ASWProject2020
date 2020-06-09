@@ -8,7 +8,7 @@ import asw.instagnam.ricetteseguite.domain.RicettaSeguita;
 
 public interface RicetteSeguiteRepository extends CrudRepository<RicettaSeguita, Long> {
 	
-	public Collection<RicettaSeguita> findAllByUtenteFollower(String follower);
+	public Collection<RicettaSeguita> findAllByFollower(String follower);
 	
 
 }

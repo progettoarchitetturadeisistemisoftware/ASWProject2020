@@ -23,7 +23,7 @@ public class ConnessioniDomainEventConsumer implements DomainEventConsumer {
 	private ConnessioniRepository connessioniRepository; 
 	
 	@Autowired
-	private RicetteRepository ricettaRepository; 
+	private RicetteRepository ricetteRepository; 
 
 	@Autowired
 	private RicetteSeguiteRepository ricetteSeguiteRepository;
@@ -45,10 +45,11 @@ public class ConnessioniDomainEventConsumer implements DomainEventConsumer {
 		Connessione connessione = new Connessione(cce.getId(), cce.getFollower(), cce.getFollowed());
 		// Troviamo tutte le ricette dell'utente seguito
 		String autore = connessione.getFollowed();
-		Collection<Ricetta> ricette = ricettaRepository.findAllByAutore(autore);
-		//Creiamo le ricette seguite
+		Collection<Ricetta> ricette = ricetteRepository.findAllByAutore(autore);
+		// Creiamo le ricette seguite
 		List<RicettaSeguita> ricetteSeguite = new ArrayList<>();
-		ricette.stream().forEach(ricetta -> ricetteSeguite.add(new RicettaSeguita(connessione.getFollower(), ricetta)));
+		ricette.stream().forEach(ricetta -> ricetteSeguite.add(new RicettaSeguita(ricetta.getId(),
+				connessione.getFollower(), ricetta.getAutore(), ricetta.getTitolo())));
 
 		// Salviamo le ennuple nella base di dati
 		connessioniRepository.save(connessione);

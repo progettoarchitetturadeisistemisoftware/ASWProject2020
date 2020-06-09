@@ -15,12 +15,10 @@ public class RicettaSeguita {
 	
 	@Id
 	private Long idRicetta; 
-	private String utenteFollower; 
+	private String follower; 
 	private String autoreRicetta; 
 	private String titoloRicetta;
 	
 	
-	public RicettaSeguita(String utenteFollower, Ricetta ricetta) {
-		this(ricetta.getId(), utenteFollower, ricetta.getAutore(), ricetta.getTitolo()); 
-	} 
+	 
 }
