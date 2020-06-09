@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 
 import asw.instagnam.common.api.event.DomainEvent;
 import asw.instagnam.ricetteseguite.domain.Ricetta;
+import asw.instagnam.ricetteseguite.domain.RicettaSeguita;
 import asw.instagnam.ricetteseguite.domain.repository.RicetteRepository;
+import asw.instagnam.ricetteseguite.domain.repository.RicetteSeguiteRepository;
 import asw.instagnam.ricetteservice.api.event.RicettaCreatedEvent;
 
 
@@ -14,6 +16,9 @@ public class RicetteDomainEventConsumer implements DomainEventConsumer {
 
 	@Autowired
 	private RicetteRepository ricetteRepository; 
+	
+	@Autowired
+	private RicetteSeguiteRepository ricetteSeguiteRepository;
 	
 	@Override
 	public void onEvent(DomainEvent event) {
@@ -29,7 +34,9 @@ public class RicetteDomainEventConsumer implements DomainEventConsumer {
 	private void handleRicettaCreatedEvent(DomainEvent event) {
 		RicettaCreatedEvent rce = (RicettaCreatedEvent) event; 
 		Ricetta ricetta = new Ricetta(rce.getId(), rce.getAutore(), rce.getTitolo());   
+		RicettaSeguita ricettaSeguita = new RicettaSeguita(null, rce.getId(), rce.getAutore(), rce.getTitolo());
 		ricetteRepository.save(ricetta); 
+		ricetteSeguiteRepository.save(ricettaSeguita);
 	}
 
 	

@@ -1,7 +1,7 @@
 package asw.instagnam.ricetteseguite.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import lombok.Data;
@@ -12,20 +12,21 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor 
 public class RicettaSeguita {
 	
-	@Id @GeneratedValue
-	private Long id; 
-	private String follower; 
-	private Long idRicetta; 
-	private String autore; 
-	private String titolo;
 	
-	public RicettaSeguita(String follower, Long idRicetta, String autore, String titolo) {
+	@Id
+	private Long idRicetta; 
+	@Column(nullable=true)
+	private String utenteFollower; 
+	private String autoreRicetta; 
+	private String titoloRicetta;
+	
+	public RicettaSeguita(String utenteFollower, Long idRicetta, String autoreRicetta, String titoloRicetta) {
 		super();
-		this.follower = follower;
+		this.utenteFollower = utenteFollower;
 		this.idRicetta = idRicetta;
-		this.autore = autore;
-		this.titolo = titolo;
+		this.autoreRicetta = autoreRicetta;
+		this.titoloRicetta = titoloRicetta;
 	} 
-
+	
 	
 }
