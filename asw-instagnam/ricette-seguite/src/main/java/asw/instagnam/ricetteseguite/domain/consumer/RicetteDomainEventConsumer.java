@@ -42,19 +42,19 @@ public class RicetteDomainEventConsumer implements DomainEventConsumer {
 	
 	
 	private void handleRicettaCreatedEvent(DomainEvent event) {
-		RicettaCreatedEvent rce = (RicettaCreatedEvent) event; 
-		Ricetta ricetta = new Ricetta(rce.getId(), rce.getAutore(), rce.getTitolo());   
-		final Ricetta ricettaNuova = ricetteRepository.save(ricetta); 
-		
+		RicettaCreatedEvent rce = (RicettaCreatedEvent) event;
+		Ricetta ricetta = new Ricetta(rce.getId(), rce.getAutore(), rce.getTitolo());
+		final Ricetta ricettaNuova = ricetteRepository.save(ricetta);
+
 		// Troviamo tutti i follower (connessioni) dell'autore
 		Collection<Connessione> connessioni = connessioniRepository.findAllByFollowed(ricetta.getAutore());
-		List<RicettaSeguita> ricetteSeguite = new ArrayList<>(); 
-		//Creiamo le ricetteSeguite con i follower dell'autore della nuova ricetta
-		connessioni.stream().forEach(connessione -> ricetteSeguite.add(new RicettaSeguita(connessione.getFollower(),
-				ricettaNuova.getId(), ricettaNuova.getAutore(), ricettaNuova.getTitolo())));
-		//Salviamo le ricette seguite nella base di dati
+		List<RicettaSeguita> ricetteSeguite = new ArrayList<>();
+		// Creiamo le ricetteSeguite con i follower dell'autore della nuova ricetta
+		connessioni.stream().forEach(connessione -> ricetteSeguite.add(new RicettaSeguita(ricettaNuova.getId(),
+				connessione.getFollower(), ricettaNuova.getAutore(), ricettaNuova.getTitolo())));
+		// Salviamo le ricette seguite nella base di dati
 		ricetteSeguite.stream().forEach(ricettaSeguita -> ricetteSeguiteRepository.save(ricettaSeguita));
-		
+
 	}
 
 	
