@@ -29,6 +29,8 @@ public class RicettaSeguita {
 		this.titoloRicetta = titoloRicetta;
 	}
 	
-	
+	public Ricetta getRicetta() {
+		return new Ricetta(this.idRicetta, autoreRicetta, titoloRicetta); 
+	}
 	 
 }
