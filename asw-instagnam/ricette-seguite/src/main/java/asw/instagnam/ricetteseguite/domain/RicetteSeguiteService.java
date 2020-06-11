@@ -21,7 +21,7 @@ public class RicetteSeguiteService {
 		return ricetteSeguiteRepository.findAllByFollower(utente).stream()
 				.map(ricettaSeguita -> new Ricetta(ricettaSeguita.getIdRicetta(), ricettaSeguita.getAutoreRicetta(),
 						ricettaSeguita.getTitoloRicetta()))
-				.collect(Collectors.toList());
+				                   .collect(Collectors.toList());
 
 	}
 	
