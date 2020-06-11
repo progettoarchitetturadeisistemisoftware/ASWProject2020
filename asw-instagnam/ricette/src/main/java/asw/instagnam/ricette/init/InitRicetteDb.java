@@ -10,18 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Component
 public class InitRicetteDb implements CommandLineRunner {
 
-	@Autowired 
-	private RicetteService ricetteService; 
+	@Autowired
+	private RicetteService ricetteService;
 
-	public void run(String[] args) {	
-		//Le seconde repliche di Ricette non inizializzano il database
-		if (ricetteService.getRicette().isEmpty()) {
-			ricetteService.createRicetta("Cristiano", "Panino al prosciutto", "Metti il prosciutto nel panino");
-			ricetteService.createRicetta("Cristiano", "Pizza e mortazza", "Metti la mortadella nella pizza");
-			ricetteService.createRicetta("Gennaro", "Tonno e fagioli", "Unisci i fagioli con il tonno");
-			ricetteService.createRicetta("Antonino", "Pizza margherita", "... e alla fine inforna");
-			ricetteService.createRicetta("Benedetta", "Tonno e fagioli", "Unisci il tonno con i fagioli");
-		}	
+	public void run(String[] args) {
+		// Le seconde repliche di Ricette non inizializzano il database
+		ricetteService.createRicetta("Cristiano", "Panino al prosciutto", "Metti il prosciutto nel panino");
+		ricetteService.createRicetta("Cristiano", "Pizza e mortazza", "Metti la mortadella nella pizza");
+		ricetteService.createRicetta("Gennaro", "Tonno e fagioli", "Unisci i fagioli con il tonno");
+		ricetteService.createRicetta("Antonino", "Pizza margherita", "... e alla fine inforna");
+		ricetteService.createRicetta("Benedetta", "Tonno e fagioli", "Unisci il tonno con i fagioli");
+
 	}
-	
+
 }
