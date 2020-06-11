@@ -14,7 +14,6 @@ public class InitConnessioniDb implements CommandLineRunner {
 	private ConnessioniService connessioniService;
 
 	public void run(String[] args) {
-		// Le seconde repliche di Connessioni non inizializzano il database
 		connessioniService.createConnessione("Cristiano", "Gennaro");
 		connessioniService.createConnessione("Gennaro", "Cristiano");
 		connessioniService.createConnessione("Paolo", "Cristiano");
