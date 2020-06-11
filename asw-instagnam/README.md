@@ -51,7 +51,7 @@ Per eseguire questo progetto:
 * per avviare l'applicazione *Instagnam*, eseguire lo script `start-infrastructure.sh` 
   oppure con il comando docker-compose up
   
-* per avviare l'applicazione scalando i singoli servizi eseguire lo script 'start-infrastructure-with-scaling.sh'
+* per avviare l'applicazione scalando i singoli servizi eseguire lo script `start-infrastructure-with-scaling.sh`
 
 Alla fine, l'applicazione può essere arrestata usando lo script `stop-infrastructure.sh` 
 
