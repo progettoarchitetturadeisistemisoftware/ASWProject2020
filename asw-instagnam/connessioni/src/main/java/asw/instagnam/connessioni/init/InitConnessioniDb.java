@@ -10,16 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Component
 public class InitConnessioniDb implements CommandLineRunner {
 
-	@Autowired 
-	private ConnessioniService connessioniService; 
+	@Autowired
+	private ConnessioniService connessioniService;
 
-	public void run(String[] args) {		
-		connessioniService.createConnessione( "Cristiano", "Gennaro" );	
-		connessioniService.createConnessione( "Gennaro", "Cristiano" );	
-		connessioniService.createConnessione( "Paolo", "Cristiano" );	
-		connessioniService.createConnessione( "Paolo", "Gennaro" );	
-		connessioniService.createConnessione( "Anna", "Antonino" );	
-		connessioniService.createConnessione( "Anna", "Benedetta" );	
+	public void run(String[] args) {
+		//Le seconde repliche di Connessioni non inizializzano il database
+		if (connessioniService.getConnessioni().isEmpty()) {
+			connessioniService.createConnessione("Cristiano", "Gennaro");
+			connessioniService.createConnessione("Gennaro", "Cristiano");
+			connessioniService.createConnessione("Paolo", "Cristiano");
+			connessioniService.createConnessione("Paolo", "Gennaro");
+			connessioniService.createConnessione("Anna", "Antonino");
+			connessioniService.createConnessione("Anna", "Benedetta");
+		}
 	}
-	
+
 }
