@@ -16,6 +16,9 @@ public class InitRicetteDb implements CommandLineRunner {
 	public void run(String[] args) {
 		ricetteService.createRicetta("Cristiano", "Panino al prosciutto", "Metti il prosciutto nel panino");
 		ricetteService.createRicetta("Cristiano", "Pizza e mortazza", "Metti la mortadella nella pizza");
+		ricetteService.createRicetta("Cristiano", "Panino al salame", "Metti il prosciutto nel panino");
+		ricetteService.createRicetta("Cristiano", "Pizza e nutella", "Metti la nutella nella pizza");
+		ricetteService.createRicetta("Cristiano", "Pomodoro e tonno", "Unisci i pomodori con il tonno");
 		ricetteService.createRicetta("Gennaro", "Tonno e fagioli", "Unisci i fagioli con il tonno");
 		ricetteService.createRicetta("Antonino", "Pizza margherita", "... e alla fine inforna");
 		ricetteService.createRicetta("Benedetta", "Tonno e fagioli", "Unisci il tonno con i fagioli");
