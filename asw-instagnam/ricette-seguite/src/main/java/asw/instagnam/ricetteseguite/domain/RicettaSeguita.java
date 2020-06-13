@@ -30,7 +30,7 @@ public class RicettaSeguita {
 	}
 	
 	public Ricetta getRicetta() {
-		return new Ricetta(this.idRicetta, autoreRicetta, titoloRicetta); 
+		return new Ricetta(this.idRicetta, this.autoreRicetta, this.titoloRicetta); 
 	}
 	 
 }

@@ -40,17 +40,19 @@ public class ConnessioniDomainEventConsumer implements DomainEventConsumer {
 		ConnessioneCreatedEvent cce = (ConnessioneCreatedEvent) event;
 		// Creiamo una nuova connessione
 		Connessione connessione = new Connessione(cce.getId(), cce.getFollower(), cce.getFollowed());
-		// Troviamo tutte le ricette dell'utente seguito
+	    connessioniRepository.save(connessione);
+	    
 		String autore = connessione.getFollowed();
-		Collection<Ricetta> ricette = ricetteRepository.findAllByAutore(autore);
-		// Creiamo le ricette seguite
-		List<RicettaSeguita> ricetteSeguite = new ArrayList<>();
-		ricette.stream().forEach(ricetta -> ricetteSeguite.add(new RicettaSeguita(connessione.getFollower(),
-				ricetta.getId(), ricetta.getAutore(), ricetta.getTitolo())));
 
-		// Salviamo le ennuple nella base di dati
-		connessioniRepository.save(connessione);
-		ricetteSeguite.stream().forEach(ricettaSeguita -> ricetteSeguiteRepository.save(ricettaSeguita));
-
+		// Troviamo tutte le ricette dell'utente seguito
+		ricetteRepository.findAllByAutore(autore)
+				.stream()
+				// Creiamo le ricette seguite
+				.map(ricetta -> new RicettaSeguita(connessione.getFollower(), ricetta.getId(), ricetta.getAutore(),
+						ricetta.getTitolo()))
+				// Salviamo le ennuple nella base di dati
+				.forEach(ricettaSeguita -> ricetteSeguiteRepository.save(ricettaSeguita));
+		
+		
 	}
 }

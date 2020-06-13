@@ -15,14 +15,6 @@ public class RicetteSeguiteService {
 	@Autowired 
 	private RicetteSeguiteRepository ricetteSeguiteRepository;
 
-	/*Variante piu' complessa
-    //Trova le ricette create da utenti seguiti da utente*/
-	public Collection<Ricetta> getRicetteSeguite(String utente) {
-		return ricetteSeguiteRepository.findAllByFollower(utente).stream()
-				.map(ricettaSeguita -> ricettaSeguita.getRicetta()).collect(Collectors.toList());
-
-	}
-	
 	/* Versione base
 	 //Trova le ricette (in formato breve) degli utenti seguiti da utente. 
 	public Collection<Ricetta> getRicetteSeguite(String utente) {
@@ -34,5 +26,15 @@ public class RicetteSeguiteService {
 
 	} 
 	 */
+	
+	/*Variante piu' complessa
+    //Trova le ricette create da utenti seguiti da utente*/
+	public Collection<Ricetta> getRicetteSeguite(String utente) {
+		return ricetteSeguiteRepository.findAllByFollower(utente).stream()
+				.map(ricettaSeguita -> ricettaSeguita.getRicetta()).collect(Collectors.toList());
+
+	}
+	
+	
 	
 }

@@ -53,7 +53,8 @@ Per eseguire questo progetto:
   
 * per avviare l'applicazione scalando i singoli servizi eseguire lo script `start-infrastructure-with-scaling.sh`
 
-Alla fine, l'applicazione può essere arrestata usando lo script `stop-infrastructure.sh` 
+Alla fine, l'applicazione può essere arrestata usando lo script `stop-infrastructure.sh`, oppure utlizzando il comando
+docker-compose down. 
 
 
 
